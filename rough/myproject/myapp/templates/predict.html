@@ -1,0 +1,370 @@
+<!-- <!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+</head>
+<body>
+    <h1>Fraud Detection</h1>
+    <form method="post" action="{% url 'predict_fraud' %}">
+        {% csrf_token %}
+        <label for="type">Type:</label>
+        <input type="number" id="type" name="type" required><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required><br>
+        <label for="oldbalanceOrg">Old Balance Org:</label>
+        <input type="number" id="oldbalanceOrg" name="oldbalanceOrg" required><br>
+        <label for="newbalanceOrig">New Balance Orig:</label>
+        <input type="number" id="newbalanceOrig" name="newbalanceOrig" required><br>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Fraud Detection Form</title>
+    <link rel="stylesheet" href="">
+    <style>
+        
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d29393;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fae0e0;
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 10px 10px 10px 10px rgba(2, 1, 1, 0.1);
+    width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form {
+    margin-bottom: 15px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #022142;
+}
+#amount {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+}
+#oldbalance {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+}#newbalance {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+}#type {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i>Online Payment Fraud Detection Form</i></h1>
+        <form id="fraudDetectionForm" method="post" action="{% url 'predict_fraud'%}">
+            {% csrf_token %}
+            <div class="form">
+                <label for="amount"></label>
+                <input type="number" id="amount" name="type" placeholder="Enter Transaction amount">
+            </div>
+            <div class="form">
+                <label for="amount"></label>
+                <input type="number" id="oldbalance" name="amount" placeholder="Enter Old Balance">
+            </div>
+            <div class="form">
+                <label for="amount"></label>
+                <input type="number" id="newbalance" name="oldbalanceOrg" placeholder="Enter New Balance">
+            </div>
+            <div class="form">
+                <label for="amount"></label>
+                <input type="number" id="type" name="newbalanceOrig" placeholder="Enter Type of the Transaction">
+            </div>
+            <!-- <div class="form">
+                <label for="paymentMethod"></label>
+                <select id="paymentMethod" name="new" required>
+                    <option value="payment">Payment</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="cash-in">cash-in</option>
+                    <option value="cash-out">cash-out</option>
+                </select>
+            </div> 
+        </form>
+        <center><button type="submit">PREDICT NOW</button></center>
+
+        <div id="result">
+
+        </div>
+        
+    </div>
+    <script src=""></script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Fraud Detection Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d29393;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fae0e0;
+            padding: 20px;
+            border-radius: 28px;
+            box-shadow: 10px 10px 10px 10px rgba(2, 1, 1, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form {
+            margin-bottom: 15px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            font-style: oblique;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #022142;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i>Online Payment Fraud Detection Form</i></h1>
+        <form id="fraudDetectionForm" method="post" action="{% url 'predict_fraud' %}">
+            {% csrf_token %}
+            <div class="form">
+                <label for="type">Transaction Type</label>
+                <input type="number" id="type" name="type" placeholder="Enter Type of the Transaction" required>
+            </div>
+            <div class="form">
+                <label for="amount">Transaction Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter Transaction Amount" required>
+            </div>
+            <div class="form">
+                <label for="oldbalanceOrg">Old Balance</label>
+                <input type="number" id="oldbalance" name="oldbalanceOrg" placeholder="Enter Old Balance" required>
+            </div>
+            <div class="form">
+                <label for="newbalanceOrig">New Balance</label>
+                <input type="number" id="newbalance" name="newbalanceOrig" placeholder="Enter New Balance" required>
+            </div>
+            <button type="submit">PREDICT NOW</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Fraud Detection Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: URL("https://www.techdonut.co.uk/sites/default/files/fraud_detection_software_1061136770.jpg");
+    background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.container {
+   
+  
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 10px 10px 10px 10px rgba(2, 1, 1, 0.1);
+    width: 400px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: antiquewhite;
+}
+
+.form {
+    margin-bottom: 15px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input, .form select, .form textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #131414;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
+button:hover {
+    background-color: #022142;
+    transform: translate(10px) ;
+}
+#amount {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+    font-weight: bold;
+}
+#oldbalance {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+    font-weight: bold;
+}#newbalance {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+    font-weight: bold;
+}#type {
+    font-style:oblique;
+    font:500px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1><i>Online Payment Fraud Detection Form</i></h1>
+        <form id="fraudDetectionForm" method="post" action="{% url 'predict_fraud' %}">{% csrf_token %}
+            <div class="form">
+                <label for="amount">Transaction Type:</label>
+                <input type="number" id="amount" name="type" placeholder="Enter Transaction amount">
+            </div>
+            <div class="form">
+                <label for="amount">Transaction Amount:</label>
+                <input type="number" id="oldbalance" name="amount" placeholder="Enter Old Balance">
+            </div>
+            <div class="form">
+                <label for="amount">Old Balance:</label>
+                <input type="number" id="newbalance" name="oldbalanceOrg" placeholder="Enter New Balance">
+            </div>
+            <div class="form">
+                <label for="amount">New Balance</label>
+                <input type="number" id="type" name="newbalanceOrig" placeholder="Enter Type of the Transaction">
+            </div>
+            <center><button type="submit">PREDICT NOW</button></center>
+        </form>
+        
+        
+    </div>
+    
+</body>
+</html>
